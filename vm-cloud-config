@@ -40,3 +40,26 @@ runcmd:
 ### Always make last step
 ### Eject cdrom to release cdrom when cloud-init is done running. 
  - eject /dev/cdrom
+
+
+
+
+
+
+ #cloud-config
+ runcmd:
+ - echo ce.aiq-convoy.devops > /etc/ssh/authorized_principals/centos
+ - systemctl stop firewalld
+ - systemctl disable firewalld
+ - growpart /dev/sda 2
+ - pvresize /dev/sda2
+ - pvcreate /dev/sdb
+ - vgextend RootVolGroup00 /dev/sdb
+ - lvextend -L +50G /dev/RootVolGroup00/root
+ - xfs_growfs /
+ - lvcreate -l 100%FREE -n applv RootVolGroup00
+ - mkfs.xfs /dev/RootVolGroup00/applv
+ - mkdir /app
+ - mount /dev/RootVolGroup00/applv /app
+ - "echo \"/dev/RootVolGroup00/applv /app auto defaults,comment=cloudconfig 0 0\" >>\
+   \ /etc/fstab"
