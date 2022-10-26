@@ -1,1 +1,42 @@
-"#cloud-config\n# The above line is NOT a comment. There can NOT be a space. It MUST be included\n# Example if you want to install packages during boot\npackages:\n - npm\n# Example if you want to create your own local user\nusers:\n - default\n - name: local-admin\n gecos: Admin for my app\n sudo: ALL=(ALL) NOPASSWD:ALL\n#\n# Start of the BASIC SETUP\nruncmd:\n# Setting up Autobahn for the default user\n - echo clyons793 > /etc/ssh/authorized_principals/cloud-user\n# End of the BASIC SETUP\n#\n# Start of if you want your own local user\n - echo clyons793 > /etc/ssh/authorized_principals/local-admin\n - chmod 644 /etc/ssh/authorized_principals/local-admin\n - chage -M -1 local-admin\n# WARNING this will be pulled out if the TSS-Tie Hardening playbooks are ran against your VM at a future date\n - sed -i '/root,autobahn,cloud-user/ s/$/,local-admin/' /etc/ssh/sshd_config\n - systemctl restart sshd\n# END OF your own local user setup\n#\n# LVM details can be read at https://onecloud.comcast.net/docs/using-ccp/resources/application-examples/lvm/\n# Start if you want to extend your disks\n# Steps to extend the boot disk to have access to full capacity of your boot disk\n - growpart /dev/sda 2\n - pvresize /dev/sda2\n - lvextend -rl +95%FREE /dev/$(vgs --noheadings | awk '{print $1}')/root\n#\n# Below are several examples you can select from to use the extra space assigned to your VM\n# These are all LVM commands and can be altered, they are not unique to CCP-VM\n# Start of examples if you added all available space to the root volume group\n# Example 1: Steps to extend all available capacity in roots vg to the root directory (/)\n - lvextend -rl +95%FREE /dev/$(vgs --noheadings | awk '{print $1}')/root\n#\n### Always make last step\n### Eject cdrom to release cdrom when cloud-init is done running. \n - eject /dev/cdrom"
+#cloud-config
+# The above line is NOT a comment. There can NOT be a space. It MUST be included# Example if you want to install packages during boot
+packages:
+ - npm
+# Example if you want to create your own local user
+users:
+ - default
+ - name: local-admin
+ gecos: Admin for my app
+ sudo: ALL=(ALL) NOPASSWD:ALL
+#
+# Start of the BASIC SETUP
+runcmd:
+# Setting up Autobahn for the default user
+ - echo clyons793 > /etc/ssh/authorized_principals/cloud-user
+# End of the BASIC SETUP
+#
+# Start of if you want your own local user
+ - echo clyons793 > /etc/ssh/authorized_principals/local-admin
+ - chmod 644 /etc/ssh/authorized_principals/local-admin
+ - chage -M -1 local-admin
+# WARNING this will be pulled out if the TSS-Tie Hardening playbooks are ran against your VM at a future date
+ - sed -i '/root,autobahn,cloud-user/ s/$/,local-admin/' /etc/ssh/sshd_config
+ - systemctl restart sshd
+# END OF your own local user setup
+#
+# LVM details can be read at https://onecloud.comcast.net/docs/using-ccp/resources/application-examples/lvm/
+# Start if you want to extend your disks
+# Steps to extend the boot disk to have access to full capacity of your boot disk
+ - growpart /dev/sda 2
+ - pvresize /dev/sda2
+ - lvextend -rl +95%FREE /dev/$(vgs --noheadings | awk '{print $1}')/root
+#
+# Below are several examples you can select from to use the extra space assigned to your VM
+# These are all LVM commands and can be altered, they are not unique to CCP-VM
+# Start of examples if you added all available space to the root volume group
+# Example 1: Steps to extend all available capacity in roots vg to the root directory (/)
+ - lvextend -rl +95%FREE /dev/$(vgs --noheadings | awk '{print $1}')/root
+#
+### Always make last step
+### Eject cdrom to release cdrom when cloud-init is done running. 
+ - eject /dev/cdrom
