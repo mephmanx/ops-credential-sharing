@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
   filesContext.forEach(function(el){
     el.addEventListener('click', function (event) {
       event.preventDefault()
-      menu.popup(remote.getCurrentWindow());
+      menu.popup({window: remote.getCurrentWindow()});
     })
   })
 })

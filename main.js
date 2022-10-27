@@ -24,6 +24,8 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    resizable:true,
+    movable:true,
     width: 800,
     height: 600,
     minWidth: 500,
@@ -59,6 +61,6 @@ ipcMain.on("toMain", (event, args) => {
     // Do something with file contents
 
     // Send result back to renderer process
-    mainWindow.webContents.send("fromMain", responseObj);
+    mainWindow.webContents.send("fromMain", {});
   });
 });

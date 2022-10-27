@@ -2310,21 +2310,10 @@ td:last-child {
   background-image: -webkit-linear-gradient(top, #d4d2d4 0%, #cccacc 100%);
   background-image: linear-gradient(to bottom, #d4d2d4 0%, #cccacc 100%);
 }
-.tab-item .icon-close-tab {
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  width: 15px;
-  height: 15px;
-  font-size: 15px;
-  line-height: 15px;
-  text-align: center;
-  color: #666;
-  opacity: 0;
-  transition: opacity .1s linear, background-color .1s linear;
-  border-radius: 3px;
-  transform: translateY(-50%);
-  z-index: 10;
+.draggable {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-app-region: drag;
 }
 .tab-item:after {
   position: absolute;
