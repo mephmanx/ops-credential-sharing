@@ -4,7 +4,7 @@ const path = require('path')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-var mainWindow = null;
+let mainWindow = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -15,14 +15,6 @@ app.on('window-all-closed', function() {
   }
 });
 
-app.whenReady().then(() => {
-  app.on('activate', function () {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
@@ -30,17 +22,18 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    'min-width': 500,
-    'min-height': 200,
-    'accept-first-mouse': true,
-    'title-bar-style': 'hidden',
+    minWidth: 500,
+    minHeight: 200,
+    acceptFirstMouse: true,
+    titleBarStyle: 'hidden',
+    frame: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL('file://' + __dirname + '/index.html').then(r => {console.log(r);});
 
   // Open the DevTools.
   //mainWindow.openDevTools();

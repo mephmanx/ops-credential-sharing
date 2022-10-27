@@ -1,9 +1,11 @@
-var remote = require('remote')
-var Menu = remote.require('menu')
-var MenuItem = remote.require('menu-item')
+// var remote = require('remote')
+// var Menu = remote.require('menu')
+// var MenuItem = remote.require('menu-item')
+const {remote} = require('electron')
+const {Menu,MenuItem} = remote
 
 // Build our new menu
-var menu = new Menu()
+const menu = new Menu();
 menu.append(new MenuItem({
   label: 'Delete',
   click: function() {
@@ -21,7 +23,13 @@ menu.append(new MenuItem({
 
 // Add the listener
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('.js-context-menu').addEventListener('click', function (event) {
-    menu.popup(remote.getCurrentWindow());
+
+  let filesContext = document.querySelectorAll('.file_arq');
+
+  filesContext.forEach(function(el){
+    el.addEventListener('click', function (event) {
+      event.preventDefault()
+      menu.popup(remote.getCurrentWindow());
+    })
   })
 })
