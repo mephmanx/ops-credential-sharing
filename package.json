@@ -1,7 +1,7 @@
 {
   "name": "ops-credential-sharing",
   "version": "1.0.1",
-  "description": "A minimal Electron application",
+  "description": "A minimal Electron application to share ops credentials with other users",
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -12,10 +12,10 @@
   "repository": "https://github.com/mephmanx/ops-credential-sharing",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Spring Vault",
+    "GitHub",
+    "cli",
+    "dotcomrow"
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
