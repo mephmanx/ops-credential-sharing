@@ -57,7 +57,10 @@ app.on('ready', function() {
 });
 
 ipcMain.on("toMain", (event, args) => {
+  console.log(event + " args -> " + args);
   fs.readFile("path/to/file", (error, data) => {
+    if (error) throw error;
+    console.log(data);
     // Do something with file contents
 
     // Send result back to renderer process
