@@ -34,14 +34,13 @@ app.on('ready', function() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      enableRemoteModule: true,
       preload: path.join(__dirname, "preload.js")
     }
   });
 
   remoteMain.enable(mainWindow.webContents)
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html').then(r => {console.log(r); return 0;});
+  mainWindow.loadURL('file://' + __dirname + '/index.html').then(r => {console.log(r !== undefined ? r : ""); return 0;});
 
   // Open the DevTools.
   // mainWindow.openDevTools();

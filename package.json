@@ -1,6 +1,6 @@
 {
   "name": "ops-credential-sharing",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A minimal Electron application to share ops credentials with other users",
   "main": "main.js",
   "scripts": {
