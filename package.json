@@ -1,6 +1,6 @@
 {
   "name": "ops-credential-sharing",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A minimal Electron application to share ops credentials with other users",
   "main": "main.js",
   "scripts": {
@@ -55,16 +55,6 @@
         {
           "name": "@electron-forge/maker-rpm",
           "config": {}
-        },
-        {
-          "name": "@electron-forge/publisher-github",
-          "config": {
-            "repository": {
-              "owner": "dotcomrow",
-              "name": "ops-credential-sharing"
-            },
-            "authToken": "{GITHUB_TOKEN}"
-          }
         }
       ]
     }
