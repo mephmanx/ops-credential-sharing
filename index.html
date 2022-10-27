@@ -10,6 +10,12 @@
     <script src="./js/menu.js" charset="utf-8"></script>
   </head>
   <body>
+  <script>
+    window.api.receive("fromMain", (data) => {
+      console.log(`Received ${data} from main process`);
+    });
+    window.api.send("toMain", "some data");
+  </script>
   <div class="window">
 
     <!-- .toolbar-header sits at the top of your app -->

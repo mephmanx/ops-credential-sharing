@@ -29,8 +29,8 @@
     "electron": "^22.0.0-beta.1"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
-    "remote": "^0.2.6"
+    "@electron/remote": "^2.0.8",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "config": {
     "forge": {
