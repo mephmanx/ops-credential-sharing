@@ -7,7 +7,7 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "env-cmd electron-forge publish"
+    "publish": "electron-forge publish"
   },
   "repository": "https://github.com/mephmanx/ops-credential-sharing",
   "keywords": [
@@ -27,7 +27,6 @@
     "@electron-forge/maker-zip": "^6.0.0-beta.68",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.69",
     "@electron-forge/publisher-github": "^6.0.0-beta.68",
-    "env-cmd": "^10.1.0",
     "electron": "^21.2.0"
   },
   "dependencies": {
