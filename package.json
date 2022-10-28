@@ -1,13 +1,13 @@
 {
   "name": "ops-credential-sharing",
-  "version": "1.0.10",
+  "version": "1.0.14",
   "description": "A minimal Electron application to share ops credentials with other users",
-  "main": "./.webpack/main.js",
+  "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "env-cmd electron-forge publish"
   },
   "repository": "https://github.com/mephmanx/ops-credential-sharing",
   "keywords": [
@@ -27,11 +27,14 @@
     "@electron-forge/maker-zip": "^6.0.0-beta.68",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.69",
     "@electron-forge/publisher-github": "^6.0.0-beta.68",
-    "electron": "^22.0.0-beta.1"
+    "env-cmd": "^10.1.0",
+    "electron": "^21.2.0"
   },
   "dependencies": {
     "@electron/remote": "^2.0.8",
-    "electron-squirrel-startup": "^1.0.0"
+    "copy-webpack-plugin": "^11.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.13"
   },
   "config": {
     "forge": {
@@ -76,7 +79,8 @@
           "repository": {
             "owner": "dotcomrow",
             "name": "ops-credential-sharing"
-          }
+          },
+          "authToken": "{GITHUB_TOKEN}"
         }
       },
       "plugins": [
@@ -86,14 +90,16 @@
             "mainConfig": "./webpack.main.config.js",
             "renderer": {
               "config": "./webpack.renderer.config.js",
-              "entryPoints": [{
-                "name": "main_window",
-                "html": "./src/renderer/index.html",
-                "js": "./src/renderer/index.js",
-                "preload": {
-                  "js": "./src/preload.js"
+              "entryPoints": [
+                {
+                  "name": "main_window",
+                  "html": "./src/renderer/index.html",
+                  "js": "./src/renderer/index.js",
+                  "preload": {
+                    "js": "./src/preload.js"
+                  }
                 }
-              }]
+              ]
             }
           }
         }
