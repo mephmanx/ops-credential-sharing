@@ -34,12 +34,17 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "executableName": "ops-credential-sharing",
+        "name": "ops-credential-sharing"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "ops_credential_sharing"
+            "name": "ops_credential_sharing",
+            "exe": "ops-credential-sharing.exe",
+            "setupExe": "ops-credential-sharing.exe"
           }
         },
         {
@@ -56,6 +61,40 @@
           "name": "@electron-forge/maker-rpm",
           "config": {}
         }
+      ],
+      "publisher": {
+        "name": "@electron-forge/publisher-github",
+        "platforms": [
+          "win32",
+          "arm64",
+          "win64",
+          "linux",
+          "aarh64"
+        ],
+        "config": {
+          "repository": {
+            "owner": "dotcomrow",
+            "name": "ops-credential-sharing"
+          }
+        }
+      },
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/index.html",
+                  "js": "./src/renderer.ts",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
       ]
     }
   }
