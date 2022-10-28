@@ -3,7 +3,6 @@ const remoteMain = require('@electron/remote/main');
 remoteMain.initialize();
 const {app, BrowserWindow,
   ipcMain} = require('electron')
-const path = require('path')
 const fs = require("fs");
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -36,13 +35,13 @@ app.on('ready', function() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      preload: path.join(__dirname, "preload.js")
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     }
   });
 
   remoteMain.enable(mainWindow.webContents)
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html').then(r => {console.log(r !== undefined ? r : ""); return 0;});
+  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY).then(r => {console.log(r !== undefined ? r : ""); return 0;});
 
   // Open the DevTools.
   // mainWindow.openDevTools();
