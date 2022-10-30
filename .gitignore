@@ -5,3 +5,4 @@ out/
 /.webpack/
 /src/**/*.js
 /src/**/*.js.map
+/Log/
