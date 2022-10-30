@@ -86,17 +86,13 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {
-        "executableName": "ops-credential-sharing",
-        "name": "ops-credential-sharing"
-      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "ops_credential_sharing",
-            "exe": "ops-credential-sharing.exe",
-            "setupExe": "ops-credential-sharing.exe"
+            "name": "suncoast.systems",
+            "exe": "suncoast.systems.exe",
+            "setupExe": "suncoast.systems.exe"
           }
         },
         {
@@ -114,15 +110,33 @@
           "config": {}
         }
       ],
+      "packagerConfig": {
+        "executableName": "suncoast.systems",
+        "name": "suncoast.systems",
+        "icon": "./src/assets/icons/ops-credential-sharing.ico",
+        "asar": true,
+        "asarUnpack": [
+          "node_modules/@electron/remote/main.js"
+        ],
+        "osxSign": {
+          "identity": "Developer ID Application: Chris Lyons (66SW9S36Q2)",
+          "hardened-runtime": true,
+          "gatekeeper-assess": false,
+          "entitlements": "entitlements.mac.plist",
+          "entitlements-inherit": "entitlements.mac.plist",
+          "signature-flags": "library"
+        },
+        "osxNotarize": {
+          "name": "suncoast.systems",
+          "icon": "./src/assets/icons/ops-credential-sharing.icns",
+          "tool": "notarytool",
+          "appleApiKey": "/Users/clyons793/Downloads/AuthKey_J4W8L3J6LZ.p8",
+          "appleApiKeyId": "J4W8L3J6LZ",
+          "appleApiIssuer": "69a6de7b-4bed-47e3-e053-5b8c7c11a4d1"
+        }
+      },
       "publisher": {
         "name": "@electron-forge/publisher-github",
-        "platforms": [
-          "win32",
-          "arm64",
-          "win64",
-          "linux",
-          "aarh64"
-        ],
         "config": {
           "repository": {
             "owner": "dotcomrow",
