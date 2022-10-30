@@ -3,5 +3,5 @@ node_modules
 
 out/
 /.webpack/
-/src/*.js
-/src/*.js.map
+/src/**/*.js
+/src/**/*.js.map
