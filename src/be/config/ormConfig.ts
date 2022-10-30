@@ -23,10 +23,10 @@ const getLogPath = (): string => {
 };
 
 const ormConfig: DataSourceOptions = {
-  type: "better-sqlite3",
+  type: "sqlite",
   database: DATABASE.PATH,
   driver: {
-    "type": "better-sqlite3",
+    "type": "sqlite",
     "database": DATABASE.PATH
   },
   synchronize: true,

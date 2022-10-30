@@ -1,5 +1,5 @@
 module.exports = {
-    makers: [{ name: '@electron-forge/custom-maker' }],
+    makers: [{name: '@electron-forge/custom-maker'}],
     packagerConfig: {
         executableName: 'ops-credential-sharing',
         name: 'ops-credential-sharing',
