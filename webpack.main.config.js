@@ -12,7 +12,10 @@ module.exports = {
         rules: require('./webpack.rules')
     },
     externals: {
-        sqlite3: 'commonjs sqlite3'
+        sqlite3: 'commonjs sqlite3',
+        node: {
+            fs: "empty"
+        }
     },
     resolve: {
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],

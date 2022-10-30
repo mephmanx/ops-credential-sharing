@@ -24,17 +24,18 @@ const getLogPath = (): string => {
 
 const ormConfig: DataSourceOptions = {
   type: "sqlite",
-  database: DATABASE.PATH,
+  database: DATABASE.NAME,
+  name: "memory-db",
   driver: {
     "type": "sqlite",
-    "database": DATABASE.PATH
+    "storage": ":memory:"
   },
   synchronize: true,
   logging: true,
   entities: [Folder, Category, Language, Tag, TagType],
   logger: new FileLogger('all', {logPath: getLogPath()}),
   subscribers: [],
-  migrations: [],
+  migrations: []
 };
 
 export default ormConfig;
