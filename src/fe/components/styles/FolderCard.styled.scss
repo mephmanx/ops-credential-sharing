@@ -1,0 +1,54 @@
+@import '../../styles/mixin.scss';
+
+$folder-card-thumbnail-width: 250px;
+$folder-card-thumbnail-height: $folder-card-thumbnail-width * 1.4;
+$folder-card-name-height: 50px;
+$folder-card-name-padding: 10px;
+$folder-card-height: calc(
+  #{$folder-card-thumbnail-height} + #{$folder-card-name-height} + #{$folder-card-name-padding} *
+    2
+);
+$folder-card-width: $folder-card-thumbnail-width;
+
+@mixin container {
+  height: $folder-card-height;
+  width: $folder-card-width;
+  margin: 10px;
+  padding: 0px !important;
+
+  &:hover {
+    cursor: default !important;
+  }
+}
+
+.folder-card_container {
+  @include container;
+}
+
+.folder-card_container--selected {
+  @include container;
+  @include selected-item;
+}
+
+.folder-card_content {
+  @include flex-full-vertical;
+  margin: 0px;
+}
+
+.folder-card_thumbnail {
+  height: $folder-card-thumbnail-height;
+  width: 100%;
+  object-fit: cover;
+}
+
+.folder-card_footer {
+  height: $folder-card-thumbnail-height;
+  padding: $folder-card-name-padding;
+  text-align: center;
+  overflow: hidden;
+}
+
+.folder-card_name {
+  @include no-outline-focus;
+  cursor: pointer;
+}

@@ -1,0 +1,13 @@
+@import '../../styles/mixin.scss';
+
+.body_container {
+  flex: 1;
+  padding: 0 5px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+}
+
+.body_container_loading_container {
+  @include middle-screen;
+}

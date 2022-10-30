@@ -1,0 +1,43 @@
+@import '../../styles/mixin.scss';
+
+.footer_pagination_container {
+  @include flex-space-between;
+  height: 100%;
+}
+
+.footer_pagination_page-button_container {
+  margin: 0 10px;
+
+  button {
+    width: 35px;
+  }
+  button:not(:first-child) {
+    margin-left: 5px;
+  }
+}
+
+.footer_pagination_page-button {
+  &:focus {
+    outline-offset: 0;
+  }
+}
+
+.footer_pagination_total-folders {
+  @include middle-important-text;
+}
+
+.footer_pagination_pagination_options {
+  @include middle-important-text;
+  display: flex;
+  align-items: center;
+
+  .bp3-html-select {
+    @include no-outline-focus;
+    margin: 0 2px;
+  }
+  select {
+    @include no-outline-focus;
+    font-size: 16px !important;
+    font-weight: 600;
+  }
+}

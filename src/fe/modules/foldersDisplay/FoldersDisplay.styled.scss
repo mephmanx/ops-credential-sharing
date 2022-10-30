@@ -1,0 +1,7 @@
+@import '../../styles/mixin.scss';
+
+.folder-display_container {
+  @include flex-full-vertical;
+  height: 100vh;
+  overflow-y: hidden;
+}
