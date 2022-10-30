@@ -4,10 +4,6 @@ module.exports = {
         executableName: 'ops-credential-sharing',
         name: 'ops-credential-sharing',
         icon: './src/assets/icons/ops-credential-sharing.ico',
-        asar: true,
-        asarUnpack: [
-            'node_modules/@electron/remote/main.js'
-        ],
         osxSign: {
             identity: 'Developer ID Application: Chris Lyons (66SW9S36Q2)',
             'hardened-runtime': true,
