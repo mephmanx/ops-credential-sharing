@@ -1,71 +1,48 @@
 module.exports = {
-    "makers": [
-        {
-            "name": "@electron-forge/maker-squirrel",
-            "config": {
-                "name": "ops-credential-sharing",
-                "exe": "ops-credential-sharing.exe",
-                "setupExe": "ops-credential-sharing.exe"
-            }
-        },
-        {
-            "name": "@electron-forge/maker-zip",
-            "platforms": [
-                "darwin"
-            ]
-        },
-        {
-            "name": "@electron-forge/maker-deb",
-            "config": {}
-        },
-        {
-            "name": "@electron-forge/maker-rpm",
-            "config": {}
-        }
-    ],
-    "packagerConfig": {
-        "executableName": "ops-credential-sharing",
-        "name": "ops-credential-sharing",
-        "icon": "./src/assets/icons/ops-credential-sharing.ico",
-        "asar": true,
-        "asarUnpack": [
-            "node_modules/@electron/remote/main.js"
+    makers: [{ name: '@electron-forge/custom-maker' }],
+    packagerConfig: {
+        executableName: 'ops-credential-sharing',
+        name: 'ops-credential-sharing',
+        icon: './src/assets/icons/ops-credential-sharing.ico',
+        asar: true,
+        asarUnpack: [
+            'node_modules/@electron/remote/main.js'
         ],
-        "osxSign": {
-            "identity": "Developer ID Application: Chris Lyons (66SW9S36Q2)",
-            "hardened-runtime": true,
-            "gatekeeper-assess": false,
-            "entitlements": "entitlements.mac.plist",
-            "entitlements-inherit": "entitlements.mac.plist",
-            "signature-flags": "library"
+        osxSign: {
+            identity: 'Developer ID Application: Chris Lyons (66SW9S36Q2)',
+            'hardened-runtime': true,
+            'gatekeeper-assess': false,
+            entitlements: 'entitlements.mac.plist',
+            'entitlements-inherit': 'entitlements.mac.plist',
+            'signature-flags': 'library'
         },
-        "osxNotarize": {
-            "appleId": process.env.appleid,
-            "appleIdPassword": process.env.password
+        osxNotarize: {
+            appleId: process.env.appleid,
+            appleIdPassword: process.env.password
         }
     },
-    "publisher": {
-        "name": "@electron-forge/publisher-github",
-        "config": {
-            "repository": {
-                "owner": "dotcomrow",
-                "name": "ops-credential-sharing"
+    publisher: {
+        name: '@electron-forge/publisher-github',
+        config: {
+            repository: {
+                owner: 'dotcomrow',
+                name: 'ops-credential-sharing'
             },
-            "authToken": "{GITHUB_TOKEN}"
+            authToken: '{GITHUB_TOKEN}'
         }
     },
-    "plugins": [
+    plugins: [
         {
-            "name": "@electron-forge/plugin-webpack",
-            "config": {
-                "mainConfig": "./webpack.main.config.js",
-                "renderer": {
-                    "config": "./webpack.renderer.config.js",
-                    "entryPoints": [
+            name: '@electron-forge/plugin-webpack',
+            config: {
+                mainConfig: './webpack.main.config.js',
+                renderer: {
+                    config: './webpack.renderer.config.js',
+                    entryPoints: [
                         {
-                            "html": "./src/index.html",
-                            "js": "./src/renderer.ts",
-                            "name": "main_window"
+                            html: './src/index.html',
+                            js: './src/renderer.ts',
+                            name: 'main_window'
                         }
                     ]
                 }
