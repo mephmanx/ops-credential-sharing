@@ -1,38 +1,23 @@
-import * as electron from "electron";
-import * as fs from "fs";
+import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database(":memory:");
-console.log(db.version);
-import contextBridge = Electron.contextBridge;
-import ipcRenderer = Electron.ipcRenderer;
+export type Channels = 'ipc-example';
 
-contextBridge.exposeInMainWorld("electron", {
-    notificationApi: {
-        sendNotification(message: any) {
-            ipcRenderer.send("notify", message);
+contextBridge.exposeInMainWorld('electron', {
+    ipcRenderer: {
+        sendMessage(channel: Channels, args: unknown[]) {
+            ipcRenderer.send(channel, args);
+        },
+        on(channel: Channels, func: (...args: unknown[]) => void) {
+            const subscription = (_event: IpcRendererEvent, ...args: unknown[]) =>
+                func(...args);
+            ipcRenderer.on(channel, subscription);
+
+            return () => {
+                ipcRenderer.removeListener(channel, subscription);
+            };
+        },
+        once(channel: Channels, func: (...args: unknown[]) => void) {
+            ipcRenderer.once(channel, (_event, ...args) => func(...args));
         },
     },
-    batteryApi: {},
-    fileApi: {},
-});
-
-contextBridge.exposeInMainWorld("fs", {
-    notificationApi: {
-        sendNotification(message: any) {
-            ipcRenderer.send("notify", message);
-        },
-    },
-    batteryApi: {},
-    fileApi: {},
-});
-
-contextBridge.exposeInMainWorld("sqlite3", {
-    notificationApi: {
-        sendNotification(message: any) {
-            ipcRenderer.send("notify", message);
-        },
-    },
-    batteryApi: {},
-    fileApi: {},
 });
