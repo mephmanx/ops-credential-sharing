@@ -1,4 +1,3 @@
-import path from 'path';
 import { app, BrowserWindow, Menu, protocol } from 'electron';
 import 'reflect-metadata';
 import 'source-map-support/register';
@@ -7,7 +6,9 @@ import initBE from './be/be';
 import { menuTemplate } from './app/app';
 import { logErrors } from './be/logging';
 import { IpcEvent } from './common/enums/commonEnums';
+import * as path from "path";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 const START_UP_TIMEOUT = 30 * 1000;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -26,10 +27,11 @@ const initWindows = (): void => {
         width: 600,
         frame: false,
         webPreferences: {
-            contextIsolation: false
+            contextIsolation: false,
+            nodeIntegration: true
         }
     });
-    splashWindow.loadFile(path.resolve(__dirname, './splash.html')).then(r => r != undefined ? console.log(r) :console.log("end"));
+    splashWindow.loadFile(path.resolve(__dirname, './splash.html')).then(r => r != undefined ? console.log(r) :console.log(""));
 
     const mainWindow = new BrowserWindow({
         height: 768,
@@ -38,19 +40,14 @@ const initWindows = (): void => {
         webPreferences: {
             nodeIntegration: true,
             webSecurity: false,
-            contextIsolation: false
+            contextIsolation: false,
+            preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
         }
     });
-    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY).then(r => r != undefined ? console.log(r) :console.log("end"));
+    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY).then(r => r != undefined ? console.log(r) :console.log(""));
 
     mainWindow.once('ready-to-show', async () => {
-        try {
-            await initApp();
-        } catch {
-            //do Nothing
-        } finally {
-            //do Nothing
-        }
+        await initApp();
         splashWindow.destroy();
         mainWindow.maximize();
         mainWindow.show();
@@ -71,13 +68,7 @@ app.on('ready', async () => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', async () => {
-    try {
-        //do nothing
-    } catch {
-        // do nothing
-    } finally {
-        app.quit();
-    }
+    app.quit();
 });
 
 app.on('activate', () => {
@@ -89,13 +80,7 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 const initApp = async () => {
-    try {
-        await initBE();
-    } catch {
-        //Do nothing
-    } finally {
-        //Do nothing
-    }
+    await initBE();
     Menu.setApplicationMenu(menuTemplate);
 };
 

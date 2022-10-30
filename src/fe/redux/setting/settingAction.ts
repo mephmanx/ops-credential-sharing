@@ -1,4 +1,4 @@
-import fs from 'fs';
+import * as fs from 'fs';
 import ini from 'ini';
 import { Dispatch } from 'redux';
 import _ from 'lodash';

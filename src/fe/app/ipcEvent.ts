@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron';
 import { Dispatch } from 'redux';
 import { IpcEvent } from '../../common/enums/commonEnums';
 import {
@@ -8,6 +7,7 @@ import {
   clearFoldersUpdateThumbnails
 } from '../redux/folder/folderAction';
 import { calculateTagRelations, clearUnusedTags } from '../redux/tag/tagAction';
+import ipcRenderer = Electron.ipcRenderer;
 
 const initIpcEventListeners = (
   dispatch: Dispatch,

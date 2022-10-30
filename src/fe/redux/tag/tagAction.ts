@@ -1,4 +1,3 @@
-import { Dispatch } from 'redux';
 import axios from 'axios';
 import fs from 'fs';
 import {
@@ -24,6 +23,7 @@ import {
 import { startLoading, finishLoading } from '../status/statusAction';
 import { fileExists } from '../../../utilities/utilityFunctions';
 import { showMessage } from '../../../utilities/feUtilities';
+import {Dispatch} from "redux";
 
 interface GetTagsOfOneFolder {
   tags: Tag[];

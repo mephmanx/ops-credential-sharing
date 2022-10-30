@@ -1,4 +1,4 @@
-import exec from 'child_process';
+import * as exec from 'child_process';
 import _ from 'lodash';
 import { AxiosError } from 'axios';
 import { Position, Toaster, Intent } from '@blueprintjs/core';
