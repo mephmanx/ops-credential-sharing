@@ -11,17 +11,11 @@ module.exports = {
     module: {
         rules: require('./webpack.rules')
     },
-    externals: {
-        sqlite3: 'commonjs sqlite3',
-        node: {
-            fs: "empty"
-        }
-    },
     resolve: {
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
-        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+        modules: [path.resolve(__dirname, 'main'), 'node_modules'],
         fallback: {
-            fs: require.resolve('fs'),
+            fs: false,
             child_process: require.resolve('child_process'),
             assert: require.resolve('assert'),
             buffer: require.resolve('buffer'),

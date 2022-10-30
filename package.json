@@ -58,6 +58,7 @@
     "electron": "^21.2.0",
     "electron-builder": "^23.6.0",
     "electron-devtools-installer": "^3.2.0",
+    "electron-rebuild": "^3.2.9",
     "electron-squirrel-startup": "^1.0.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
@@ -113,6 +114,7 @@
     "react-scripts": "5.0.1",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19",
+    "sqlite": "^3.0.6",
     "typeorm": "^0.3.10"
   },
   "config": {

@@ -1,7 +1,7 @@
 import { app, BrowserWindow, Menu, protocol } from 'electron';
 import 'reflect-metadata';
 import 'source-map-support/register';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import initBE from './be/be';
 import { menuTemplate } from './app/app';
 import { logErrors } from './be/logging';
