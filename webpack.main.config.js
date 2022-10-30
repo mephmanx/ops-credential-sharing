@@ -26,8 +26,8 @@ module.exports = {
                     to: path.resolve(__dirname, './.webpack/main/')
                 },
                 {
-                    from: path.resolve(__dirname, './src/fe/assets'),
-                    to: path.resolve(__dirname, `./.webpack/renderer/Asset/`)
+                    from: path.resolve(__dirname, './src/index.ts'),
+                    to: path.resolve(__dirname, `./.webpack/main/`)
                 }
             ]
         })
