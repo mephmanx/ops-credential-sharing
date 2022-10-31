@@ -26,6 +26,7 @@ const initWindows = (): void => {
         height: 300,
         width: 600,
         frame: false,
+        icon: path.resolve(__dirname, './src/assets/icons/png/icon_60x60.png'),
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true
@@ -37,6 +38,7 @@ const initWindows = (): void => {
         height: 768,
         width: 1024,
         show: false,
+        icon: path.resolve(__dirname, './src/assets/icons/png/icon_60x60.png'),
         webPreferences: {
             nodeIntegration: true,
             webSecurity: false,

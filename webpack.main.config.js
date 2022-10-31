@@ -14,7 +14,7 @@ module.exports = {
     target: 'electron-main',
     resolve: {
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
-        modules: [path.resolve(__dirname, 'main'), 'node_modules'],
+        modules: [path.resolve(__dirname, 'main'), 'native_modules'],
         fallback: {
             fs: false,
             child_process: require.resolve('child_process'),

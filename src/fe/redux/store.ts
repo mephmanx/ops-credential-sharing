@@ -1,5 +1,4 @@
 import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { RootState } from '../../common/interfaces/feInterfaces';
 import rootReducer from './rootReducer';
 import { folderInitState } from './folder/folderReducer';
@@ -14,9 +13,4 @@ const initState: RootState = {
   setting: { ...settingInitState }
 };
 
-const integrateReduxDevTools = () => {
-  if (process.env.NODE_ENV === 'development') return composeWithDevTools();
-  else return undefined;
-};
-
-export default createStore(rootReducer, initState, integrateReduxDevTools());
+export default createStore(rootReducer, initState);
