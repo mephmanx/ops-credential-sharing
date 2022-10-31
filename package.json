@@ -17,6 +17,9 @@
     "cli",
     "dotcomrow"
   ],
+  "build": {
+    "asar": true
+  },
   "browser": {
     "child_process": false,
     "path": false,
