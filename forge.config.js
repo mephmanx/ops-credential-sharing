@@ -1,18 +1,13 @@
 module.exports = {
+    "buildIdentifier": "Suncoast-Systems-Ops-Tools",
     makers: [{name: '@electron-forge/custom-maker'}],
     packagerConfig: {
         executableName: 'ops-credential-sharing',
-        name: 'ops-credential-sharing',
+        name: 'Ops Tools',
         icon: 'src/assets/icons/Application.icns',
-        appid: 'com.ops-credential-sharing',
-        productName: 'Ops Tools',
+        appBundleId: 'com.ops-credential-sharing',
         asar: true,
         asarUnpack: "**\\*.{node,dll}",
-        files: [
-                "dist",
-                "node_modules",
-                "package.json"
-        ],
         osxSign: {
             identity: 'Developer ID Application: Chris Lyons (66SW9S36Q2)',
             'hardened-runtime': true,
@@ -25,39 +20,12 @@ module.exports = {
             appleId: process.env.appleid,
             appleIdPassword: process.env.password
         },
-        dmg: {
-            contents: [
-                {
-                    x: 192,
-                    y: 240,
-                    type: "file",
-                    path: `${process.cwd()}/out/Gallery-darwin-x64/Gallery.app`
-                },
-                {
-                    x: 410,
-                    y: 150,
-                    type: 'link',
-                    path: '/Applications'
-                }
-            ]
-        },
-        win: {
-            target: [
-                "nsis"
-            ]
-        },
-        linux: {
-            target: [
-                "AppImage"
-            ],
-            category: "Development"
-        },
         directories: {
             app: "release/app",
             buildResources: "assets",
             output: "release/build"
         },
-        extraResources: [
+        extraResource: [
             "./assets/**"
         ]
     },
