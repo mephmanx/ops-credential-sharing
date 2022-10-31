@@ -7,7 +7,8 @@ import React, {
   createElement
 } from 'react';
 import { useSelector } from 'react-redux';
-import { Card, Tooltip, ContextMenu } from '@blueprintjs/core';
+import { Card, ContextMenu } from '@blueprintjs/core';
+import { Tooltip2 } from "@blueprintjs/popover2";
 import { RootState } from '../../common/interfaces/feInterfaces';
 import { MESSAGE } from '../../common/variables/commonVariables';
 import FunctionsContext from '../context/FunctionsContext';
@@ -72,7 +73,7 @@ const FolderCard = ({
 
   const onClickCardName = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    navigator.clipboard.writeText(folderName);
+    navigator.clipboard.writeText(folderName).then((r: any) => r != undefined ? console.log(r) :console.log(""));
     showMessage.info(MESSAGE.COPY_TO_CLIPBOARD);
     if (!selectedFolders.includes(folderLocation))
       addToSelectedList(folderLocation);
@@ -89,16 +90,16 @@ const FolderCard = ({
         <img
           src={thumbnailLocation || defaultThumbnail}
           className="folder-card_thumbnail"
-        />
-        <figcaption className="folder-card_footer">
-          <Tooltip content="Click to copy" minimal={true}>
+         alt={thumbnailLocation}/>
+        <figcaption>
+          <Tooltip2 content="Click to copy" minimal={true}>
             <div
               className="folder-card_name bp3-text-large"
               onClick={onClickCardName}
             >
               {folderName}
             </div>
-          </Tooltip>
+          </Tooltip2>
         </figcaption>
       </figure>
     </Card>

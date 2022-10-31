@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode, useState, useEffect } from 'react';
 import _ from 'lodash';
 import { MenuItem } from '@blueprintjs/core';
-import { MultiSelect, ItemRenderer, ItemPredicate } from '@blueprintjs/select';
+import {ItemRenderer, ItemPredicate, MultiSelect2} from '@blueprintjs/select';
 import { BreakDownTagType } from '../../common/interfaces/commonInterfaces';
 import { MESSAGE } from '../../common/variables/commonVariables';
 import { showMessage } from '../../utilities/feUtilities';
@@ -83,7 +83,7 @@ const CustomMultiSelect = ({
     // Not clicking on remove icon and clicking on inner div, not the whole tag
     if (target.localName !== 'path' && target.childElementCount === 0) {
       event.stopPropagation();
-      navigator.clipboard.writeText(target.innerText);
+      navigator.clipboard.writeText(target.innerText).then((r: any) => r != undefined ? console.log(r) :console.log(""));
       showMessage.info(MESSAGE.COPY_TO_CLIPBOARD);
     }
   };
@@ -120,7 +120,7 @@ const CustomMultiSelect = ({
     );
   };
   return (
-    <MultiSelect
+    <MultiSelect2
       fill={true}
       resetOnQuery={false}
       items={allItems}
@@ -146,8 +146,7 @@ const CustomMultiSelect = ({
       }}
       itemPredicate={filterItems}
       popoverProps={{ ...popoverProps }}
-      openOnKeyDown={true}
-    />
+      openOnKeyDown={true}></MultiSelect2>
   );
 };
 

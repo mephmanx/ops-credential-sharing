@@ -130,6 +130,8 @@ const generateTagsFromSearchKeywords = (
 
   const getTagsByTagKeyFromSearchKeywords = (tagKey: string) => {
     const tagKeyRegex = `${tagKey}:`;
+    // language=JSRegexp format=false
+    // language=JSRegexp
     const searchRegex = new RegExp(
       `(?<=${tagKeyRegex})(.*?)(?=(\\${END_OF_TAGS_CHARACTER}|${alternativeEndOfTagsRegex}|$))`,
       'gi'

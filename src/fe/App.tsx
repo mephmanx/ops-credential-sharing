@@ -4,7 +4,7 @@ import axiosConfig from './config/axiosConfig';
 import { FolderFilterParams } from '../common/interfaces/commonInterfaces';
 import { RootState } from '../common/interfaces/feInterfaces';
 import { PAGINATION, ELEMENT_ID } from '../common/variables/commonVariables';
-import { initIpcEventListeners, clearIpcEventListerners } from './app/ipcEvent';
+import { clearIpcEventListeners, initIpcEventListeners} from './app/ipcEvent';
 import { SettingDialog, ManageTagsDialog } from './components/commonComponents';
 import FoldersDisplay from './modules/foldersDisplay/FoldersDisplay';
 import { generateTagsFromSearchKeywords } from '../utilities/feUtilities';
@@ -49,13 +49,13 @@ const App = (): ReactElement => {
       onOpenManageTagsDialog,
       refreshFolders
     );
-    getCategories(dispatch);
-    getLanguages(dispatch);
+    getCategories(dispatch).then((r: any) => r != undefined ? console.log(r) :console.log(""));
+    getLanguages(dispatch).then((r: any) => r != undefined ? console.log(r) :console.log(""));
     getSettings(dispatch, onSuccessGetSettings);
     loadTagRelations(dispatch);
 
     return () => {
-      clearIpcEventListerners();
+      clearIpcEventListeners();
     };
   }, []);
 
@@ -83,8 +83,8 @@ const App = (): ReactElement => {
         // so stop here.
         return;
       }
-      getNewFolders(defaultSearchParams);
-    } else getNewFolders();
+      getNewFolders(defaultSearchParams).then((r: any) => r != undefined ? console.log(r) :console.log(""));
+    } else getNewFolders().then((r: any) => r != undefined ? console.log(r) :console.log(""));
   }, [params, isSettingsLoaded, refreshCount]);
 
   const updateParams = (newParams: Partial<FolderFilterParams>): void => {

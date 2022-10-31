@@ -45,7 +45,7 @@ const RenameOmnibar = ({
       else if (fileExists(newLocation))
         showMessage.error(MESSAGE.DUPLICATE_NEW_NAME);
       else {
-        renameFolder(dispatch, { oldLocation: folderName, newLocation });
+        renameFolder(dispatch, { oldLocation: folderName, newLocation }).then((r: any) => r != undefined ? console.log(r) :console.log(""));
         onClose();
       }
     }

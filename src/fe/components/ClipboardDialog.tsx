@@ -130,7 +130,7 @@ const ClipboardDialog = ({ isOpen, onClose }: CommonDialog): ReactElement => {
       []
     );
     if (!_.isEmpty(includedTagTypes))
-      copyTags(dispatch, selectedFolders[0], includedTagTypes, onClose);
+      copyTags(dispatch, selectedFolders[0], includedTagTypes, onClose).then((r: any) => r != undefined ? console.log(r) :console.log(""));
     else onClose();
   };
 

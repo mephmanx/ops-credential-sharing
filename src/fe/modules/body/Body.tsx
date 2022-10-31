@@ -122,7 +122,7 @@ const Body = ({ updateSelectedFolders }: Body): ReactElement => {
         isOpen={isLoading}
       >
         <section className="body_container_loading_container">
-          <Spinner intent={Intent.PRIMARY} size={Spinner.SIZE_LARGE} />
+          <Spinner intent={Intent.PRIMARY} size={30} />
         </section>
       </Overlay>
     </section>

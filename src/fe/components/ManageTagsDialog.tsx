@@ -6,9 +6,9 @@ import {
   Button,
   Intent,
   EditableText,
-  Tooltip,
   InputGroup
 } from '@blueprintjs/core';
+import { Tooltip2 } from "@blueprintjs/popover2";
 import _ from 'lodash';
 import {
   BreakDownTagType,
@@ -39,7 +39,7 @@ const ManageTagsDialog = ({ isOpen, onClose }: CommonDialog): ReactElement => {
   const reset = () => {
     setUpdatedTags([]);
     setSearch('');
-    getManagedTags(dispatch, { filterBy });
+    getManagedTags(dispatch, { filterBy }).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   };
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const ManageTagsDialog = ({ isOpen, onClose }: CommonDialog): ReactElement => {
     setLoading(true);
     const onSuccess = () => reset();
     const onFinally = () => setLoading(false);
-    updateTags(updatedTags, onSuccess, onFinally);
+    updateTags(updatedTags, onSuccess, onFinally).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   };
 
   const getTagColor = (tagName: string) => {
@@ -154,9 +154,9 @@ const ManageTagsDialog = ({ isOpen, onClose }: CommonDialog): ReactElement => {
         <div className="manage-tags-dialog_content_data">
           <div className="manage-tags-dialog_content_table">
             <div className="manage-tags-dialog_content_header">Tag Name</div>
-            <Tooltip content="Input 'delete' to obliterate unwanted tag.">
+            <Tooltip2 content="Input 'delete' to obliterate unwanted tag.">
               <div className="manage-tags-dialog_content_header">New Value</div>
-            </Tooltip>
+            </Tooltip2>
             <div className="manage-tags-dialog_content_header">Used Times</div>
             {getRenderTagsList().map(tag => (
               <>

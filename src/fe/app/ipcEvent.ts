@@ -17,7 +17,7 @@ const initIpcEventListeners = (
 ): void => {
   ipcRenderer.on(IpcEvent.AddFolders, (_event, data) => {
     const { folderLocations } = data;
-    addFolders(dispatch, folderLocations, refreshFolders);
+    addFolders(dispatch, folderLocations, refreshFolders).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   });
   ipcRenderer.on(IpcEvent.OpenSetting, () => {
     onOpenSettingDialog();
@@ -27,26 +27,26 @@ const initIpcEventListeners = (
   });
   ipcRenderer.on(IpcEvent.ImportData, async (_event, data) => {
     const { json, isOverwrite } = data;
-    importFolders(dispatch, json, isOverwrite, refreshFolders);
+    await importFolders(dispatch, json, isOverwrite, refreshFolders);
   });
   ipcRenderer.on(IpcEvent.ExportData, () => {
-    exportFolders(dispatch);
+    exportFolders(dispatch).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   });
   ipcRenderer.on(IpcEvent.OnStartupExport, () => {
-    exportFolders();
+    exportFolders().then((r: any) => r != undefined ? console.log(r) :console.log(""));
   });
   ipcRenderer.on(IpcEvent.ClearFoldersUpdateThumbnails, () => {
-    clearFoldersUpdateThumbnails(dispatch, refreshFolders);
+    clearFoldersUpdateThumbnails(dispatch, refreshFolders).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   });
   ipcRenderer.on(IpcEvent.ClearUnusedTags, () => {
-    clearUnusedTags(dispatch);
+    clearUnusedTags(dispatch).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   });
   ipcRenderer.on(IpcEvent.CalculateTagRelations, () => {
-    calculateTagRelations(dispatch);
+    calculateTagRelations(dispatch).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   });
 };
 
-const clearIpcEventListerners = (): void => {
+const clearIpcEventListeners = (): void => {
   ipcRenderer.removeAllListeners(IpcEvent.AddFolders);
   ipcRenderer.removeAllListeners(IpcEvent.OpenSetting);
   ipcRenderer.removeAllListeners(IpcEvent.OpenManageTags);
@@ -58,4 +58,4 @@ const clearIpcEventListerners = (): void => {
   ipcRenderer.removeAllListeners(IpcEvent.CalculateTagRelations);
 };
 
-export { initIpcEventListeners, clearIpcEventListerners };
+export { initIpcEventListeners, clearIpcEventListeners };

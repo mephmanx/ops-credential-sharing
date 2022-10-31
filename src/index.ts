@@ -32,7 +32,7 @@ const initWindows = (): void => {
             nodeIntegration: true
         }
     });
-    splashWindow.loadFile(path.resolve(__dirname, './splash.html')).then(r => r != undefined ? console.log(r) :console.log(""));
+    splashWindow.loadFile(path.resolve(__dirname, './splash.html')).then((r: any) => r != undefined ? console.log(r) :console.log(""));
 
     const mainWindow = new BrowserWindow({
         height: 768,
@@ -46,7 +46,7 @@ const initWindows = (): void => {
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
         }
     });
-    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY).then(r => r != undefined ? console.log(r) :console.log(""));
+    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY).then((r: any) => r != undefined ? console.log(r) :console.log(""));
 
     mainWindow.once('ready-to-show', async () => {
         await initApp();

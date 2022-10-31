@@ -1,7 +1,7 @@
 import { Express, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { MODULE } from '../../common/variables/commonVariables';
+import { MODULE } from '../../common/variables/api';
 import folderRouter from './folder';
 import categoryRouter from './category';
 import languageRouter from './language';

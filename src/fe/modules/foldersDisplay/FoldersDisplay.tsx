@@ -230,7 +230,7 @@ const FoldersDisplay = ({
   }, [selectedFolders, foldersList, isDialogOpen, shortcut, defaultValue]);
 
   useEffect(() => {
-    if (!folderDialogParams.isOpen) getTags(dispatch);
+    if (!folderDialogParams.isOpen) getTags(dispatch).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   }, [folderDialogParams.isOpen]);
 
   const updateSelectedFolders = (
@@ -332,7 +332,7 @@ const FoldersDisplay = ({
   };
   const onRemoveFolders = () => {
     const selectedFolders = selectedFoldersRef.current;
-    removeFolders(dispatch, selectedFolders);
+    removeFolders(dispatch, selectedFolders).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   };
 
   const onFocusSearchInput = () => {

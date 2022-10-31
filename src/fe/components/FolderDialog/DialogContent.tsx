@@ -1,21 +1,14 @@
-import React, { ReactElement, useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Button, Intent } from '@blueprintjs/core';
+import React, {ReactElement, useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Button, Intent} from '@blueprintjs/core';
 import _ from 'lodash';
-import {
-  Tag,
-  BreakDownTagType
-} from '../../../common/interfaces/commonInterfaces';
-import { RootState } from '../../../common/interfaces/feInterfaces';
-import {
-  MESSAGE,
-  ELEMENT_ID,
-  SEED_DATA
-} from '../../../common/variables/commonVariables';
-import { TagAction } from '../../../common/enums/commonEnums';
-import { CustomSuggest, CustomMultiSelect } from '../commonComponents';
-import { showMessage } from '../../../utilities/feUtilities';
-import { getTags, modifyTagsOfFolders } from '../../redux/tag/tagAction';
+import {BreakDownTagType, Tag} from '../../../common/interfaces/commonInterfaces';
+import {RootState} from '../../../common/interfaces/feInterfaces';
+import {ELEMENT_ID, MESSAGE, SEED_DATA} from '../../../common/variables/commonVariables';
+import {TagAction} from '../../../common/enums/commonEnums';
+import {CustomMultiSelect, CustomSuggest} from '../commonComponents';
+import {showMessage} from '../../../utilities/feUtilities';
+import {getTags, modifyTagsOfFolders} from '../../redux/tag/tagAction';
 
 interface DialogContent {
   dialogType: TagAction;
@@ -129,7 +122,7 @@ const DialogContent = ({
           break;
         case 'Enter':
           if (!isHoldingShift) return;
-          onSave();
+          onSave().then((r: any) => r != undefined ? console.log(r) :console.log(""));
           break;
         case 'j':
           if (!noInputIsBeingFocused) return;
@@ -147,7 +140,7 @@ const DialogContent = ({
     };
 
     if (dialogType !== TagAction.Remove) {
-      getSelectedFolderTags();
+      getSelectedFolderTags().then((r: any) => r != undefined ? console.log(r) :console.log(""));
     }
 
     setFirstRender(false);
@@ -364,27 +357,25 @@ const DialogContent = ({
     );
   };
   const transformSelectedTags = () => {
-    const result = _.reduce(
-      selectedTags,
-      (accumulator, value, key) => {
-        switch (key) {
-          case 'author':
-          case 'parody':
-          case 'character':
-          case 'genre':
-            {
+    return _.reduce(
+        selectedTags,
+        (accumulator, value, key) => {
+          switch (key) {
+            case 'author':
+            case 'parody':
+            case 'character':
+            case 'genre': {
               const tags = value.map(tag => {
-                return { tagType: key, tagName: tag };
+                return {tagType: key, tagName: tag};
               });
               accumulator.push(...tags);
             }
-            break;
-        }
-        return accumulator;
-      },
-      [] as Tag[]
+              break;
+          }
+          return accumulator;
+        },
+        [] as Tag[]
     );
-    return result;
   };
   const getNewlyCreatedTags = (selectedTags: Tag[]) => {
     const newTags: Tag[] = [];
@@ -440,7 +431,7 @@ const DialogContent = ({
       language,
       action: dialogType,
       onSuccess: onSaveSuccess
-    });
+    }).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   };
   const removeTagsFromFolders = () => {
     const transformedSelectedTags = transformSelectedTags();
@@ -450,7 +441,7 @@ const DialogContent = ({
       newTags: [],
       action: dialogType,
       onSuccess: onSaveSuccess
-    });
+    }).then((r: any) => r != undefined ? console.log(r) :console.log(""));
   };
 
   return (

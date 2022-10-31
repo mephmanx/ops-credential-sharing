@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { Language } from '../entity/entity';
-import { CONTROLLER_PATH } from '../../common/variables/commonVariables';
+import { CONTROLLER_PATH } from '../../common/variables/api';
 
 const router = express.Router();
 
