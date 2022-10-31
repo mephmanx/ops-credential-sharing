@@ -24,11 +24,10 @@ const getLogPath = (): string => {
 
 const ormConfig: DataSourceOptions = {
   type: "sqlite",
-  database: DATABASE.NAME,
-  name: "memory-db",
+  database: DATABASE.PATH,
   driver: {
     "type": "sqlite",
-    "storage": ":memory:"
+    "storage": "memory"
   },
   synchronize: true,
   logging: true,
