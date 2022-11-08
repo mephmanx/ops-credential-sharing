@@ -78,7 +78,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
-    "sass": "^1.55.0",
+    "sass": "^1.56.0",
     "sass-loader": "^13.1.0",
     "sqlite3": "^5.1.2",
     "stream-browserify": "^3.0.0",
