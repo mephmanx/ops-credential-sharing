@@ -58,7 +58,7 @@
     "electron-notarize": "^1.2.1",
     "electron-packager": "^15.4.0",
     "electron-rebuild": "^3.2.9",
-    "eslint": "^8.26.0",
+    "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
