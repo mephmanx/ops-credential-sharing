@@ -125,7 +125,7 @@
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19",
     "sqlite": "^3.0.6",
-    "typeorm": "^0.3.10"
+    "typeorm": "^0.3.11"
   },
   "config": {
     "forge": "./forge.config.js"
